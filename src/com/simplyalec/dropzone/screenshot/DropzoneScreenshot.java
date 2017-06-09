@@ -1,5 +1,6 @@
 package com.simplyalec.dropzone.screenshot;
 
+import com.simplyalec.dropzone.screenshot.util.config;
 import com.simplyalec.dropzone.screenshot.util.createTrayIcon;
 import com.simplyalec.dropzone.screenshot.util.dropzoneConnect;
 import com.simplyalec.dropzone.screenshot.util.messages;
@@ -19,7 +20,14 @@ public class DropzoneScreenshot {
             messages.displayMessage("Your machine dose not support the TrayIcon, please make sure you are running Windows.");
             System.exit(0);
         }
-        if (!dropzoneConnect.checkCreds("alec", "test")) {
+
+        config.load();
+
+        if(config.username == null | config.password == null){
+            messages.displayMessage("Please enter your Dropzone username and password in the settings, then restart DropzoneScreenshot.");
+            enabled = false;
+        }
+        if (!dropzoneConnect.checkCreds(config.password, config.password)) {
             messages.displayMessage("Username/Password combination incorrect. Change it in settings and restart.");
             enabled = false;
         }

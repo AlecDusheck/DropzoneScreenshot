@@ -17,7 +17,7 @@ public class config {
     public static HashMap<Integer, String> keybinds = new HashMap<Integer, String>();
 
 
-    public void load() {
+    public static void load() {
 
         //We define these later.
         Properties prop = new Properties();
