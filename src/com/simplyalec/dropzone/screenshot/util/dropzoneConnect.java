@@ -19,11 +19,11 @@ import java.io.File;
  * Created by Alec Dusheck on 6/8/2017.
  */
 public class dropzoneConnect {
-    public static boolean checkCreds(String usr, String pass){
+    public static boolean checkCreds(String usr, String pass) {
         return true;
     }
 
-    public static void uploadFile(File file){
+    public static void uploadFile(File file) {
         try {
 
             //Setup HttpClient
@@ -71,7 +71,7 @@ public class dropzoneConnect {
 
             //Kill the connection.
             httpclient.getConnectionManager().shutdown();
-        }catch (java.io.IOException e){
+        } catch (java.io.IOException e) {
             //Print error message, there is some error with reaching dropzone.
             messages.displayMessage("An error occurred while uploading file. Servers Down?");
             return;

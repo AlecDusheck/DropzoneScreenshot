@@ -19,13 +19,10 @@ public class DropzoneScreenshot {
             messages.displayMessage("Your machine dose not support the TrayIcon, please make sure you are running Windows.");
             System.exit(0);
         }
-        if(!dropzoneConnect.checkCreds("alec", "test")){
+        if (!dropzoneConnect.checkCreds("alec", "test")) {
             messages.displayMessage("Username/Password combination incorrect. Change it in settings and restart.");
             enabled = false;
         }
         createTrayIcon.create();
     }
-
-
-
 }

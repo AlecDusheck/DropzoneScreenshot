@@ -10,7 +10,7 @@ import java.util.UUID;
  * Created by Alec Dusheck on 6/8/2017.
  */
 public class takeScreenshot {
-    public static void take(GraphicsDevice display){
+    public static void take(GraphicsDevice display) {
         try {
             //Get screen bounds
             Rectangle screenBounds = display.getDefaultConfiguration().getBounds();
@@ -33,14 +33,14 @@ public class takeScreenshot {
             //Delete file.
             File f = new File(fileName);
             f.delete();
-        }catch (Exception e){
+        } catch (Exception e) {
             messages.displayMessage("An error occurred while taking screenshot. (" + e.toString() + ").");
             e.printStackTrace();
             return;
         }
     }
 
-    public static void takeOfAll(){
+    public static void takeOfAll() {
         try {
 
             //Define graphics env
@@ -76,8 +76,8 @@ public class takeScreenshot {
             File f = new File(fileName);
             f.delete();
 
-        //TODO upload
-        }catch (Exception e){
+            //TODO upload
+        } catch (Exception e) {
             messages.displayMessage("An error occurred while taking screenshot. (" + e.toString() + ").");
             e.printStackTrace();
             return;

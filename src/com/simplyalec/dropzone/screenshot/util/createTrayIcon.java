@@ -15,7 +15,7 @@ import java.util.HashMap;
  * Created by Alec Dusheck on 6/8/2017.
  */
 public class createTrayIcon {
-    public static void create(){
+    public static void create() {
         final PopupMenu popup = new PopupMenu();
         final TrayIcon trayIcon =
                 new TrayIcon(getTrayIcon());
@@ -34,7 +34,7 @@ public class createTrayIcon {
 
         //Create takescreenShots
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        for(GraphicsDevice screens : ge.getScreenDevices()){
+        for (GraphicsDevice screens : ge.getScreenDevices()) {
             MenuItem scr = new MenuItem("Take screenshot (" + screens.getIDstring() + ")");
             listOfMons.add(scr);
             itemConnectedToDisplay.put(scr, screens);
@@ -43,10 +43,10 @@ public class createTrayIcon {
         //Change settings
         info.setEnabled(false);
 
-        if(!DropzoneScreenshot.enabled){
+        if (!DropzoneScreenshot.enabled) {
             takeOfAllDisplays.setEnabled(false);
             takeOfAllDisplays.setLabel(takeOfAllDisplays.getLabel() + " (Unable to connect)");
-            for(MenuItem mons : listOfMons){
+            for (MenuItem mons : listOfMons) {
                 mons.setEnabled(false);
                 mons.setLabel(mons.getLabel() + " (Unable to connect)");
             }
@@ -55,7 +55,7 @@ public class createTrayIcon {
         //Add components to pop-up menu
         popup.add(info);
         popup.addSeparator();
-        for(MenuItem mons : listOfMons){
+        for (MenuItem mons : listOfMons) {
             popup.add(mons);
         }
         popup.add(takeOfAllDisplays);
@@ -69,7 +69,7 @@ public class createTrayIcon {
 
 
         //Create click listeners
-        for(MenuItem mons : listOfMons){
+        for (MenuItem mons : listOfMons) {
             mons.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -107,12 +107,12 @@ public class createTrayIcon {
         }
     }
 
-    public static Image getTrayIcon(){
+    public static Image getTrayIcon() {
         try {
             File file = new File("src/dropzone_trayicon.png");
             Image img = ImageIO.read(file);
             return img;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
