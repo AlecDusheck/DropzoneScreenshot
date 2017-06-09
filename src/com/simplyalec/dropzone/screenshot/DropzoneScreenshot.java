@@ -24,7 +24,7 @@ public class DropzoneScreenshot {
         config.load();
 
         if(config.username == null | config.password == null){
-            messages.displayMessage("Please enter your Dropzone username and password in the settings, then restart DropzoneScreenshot.");
+            messages.displayMessage("Please enter your Dropzone username and password in the settings, then restart Dropzone Screenshot.");
             enabled = false;
         }
         if (!dropzoneConnect.checkCreds(config.password, config.password)) {
@@ -34,3 +34,4 @@ public class DropzoneScreenshot {
         createTrayIcon.create();
     }
 }
+
