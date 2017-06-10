@@ -9,6 +9,8 @@ public class messages {
     public static void displayMessage(String message) {
         //Create window
         JFrame win = new JFrame();
+
+        //Display message.
         JOptionPane.showMessageDialog(win, message);
     }
 }

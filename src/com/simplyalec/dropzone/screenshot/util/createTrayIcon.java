@@ -1,6 +1,8 @@
 package com.simplyalec.dropzone.screenshot.util;
 
 import com.simplyalec.dropzone.screenshot.DropzoneScreenshot;
+import com.simplyalec.dropzone.screenshot.changeBind;
+import com.simplyalec.dropzone.screenshot.screenshotThead;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,7 +26,8 @@ public class createTrayIcon {
         // Create a pop-up menu components
         MenuItem info = new MenuItem("Dropzone v0.1");
         MenuItem takeOfAllDisplays = new MenuItem("Take screenshot (All displays)");
-        MenuItem changeHotkey = new MenuItem("Change hotkey");
+        MenuItem changeHotKeyAllDisplays = new MenuItem("Change hotkey | Take screenshot of all displays");
+        Menu changeHotkey = new Menu("Change hotkey");
         MenuItem changeLogin = new MenuItem("Change login");
         MenuItem exit = new MenuItem("Exit");
 
@@ -38,6 +41,18 @@ public class createTrayIcon {
             MenuItem scr = new MenuItem("Take screenshot (" + screens.getIDstring() + ")");
             listOfMons.add(scr);
             itemConnectedToDisplay.put(scr, screens);
+        }
+
+        //Create menu items for hotkey.
+        for (GraphicsDevice screens : ge.getScreenDevices()) {
+            MenuItem scr = new MenuItem("Change hotkey | Take screenshot (" + screens.getIDstring() + ")");
+            changeHotkey.add(scr);
+            scr.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    changeBind bindGUI = new changeBind("screenShot" + screens.getIDstring());
+                }
+            });
         }
 
         //Change settings
@@ -60,6 +75,7 @@ public class createTrayIcon {
         }
         popup.add(takeOfAllDisplays);
         popup.addSeparator();
+        changeHotkey.add(changeHotKeyAllDisplays);
         popup.add(changeHotkey);
         popup.addSeparator();
         popup.add(changeLogin);
@@ -73,23 +89,18 @@ public class createTrayIcon {
             mons.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    takeScreenshot.take(itemConnectedToDisplay.get(mons));
-                    messages.displayMessage("Screenshot taken of display " + itemConnectedToDisplay.get(mons).getIDstring() + "!");
+                    //takeScreenshot.take(itemConnectedToDisplay.get(mons));
+                    //messages.displayMessage("Screenshot taken of display " + itemConnectedToDisplay.get(mons).getIDstring() + "!");
+                    screenshotThead st = new screenshotThead(itemConnectedToDisplay.get(mons));
                 }
             });
         }
         takeOfAllDisplays.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                takeScreenshot.takeOfAll();
-                messages.displayMessage("Screenshot taken of all displays!");
-            }
-        });
-
-        changeHotkey.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+                //takeScreenshot.takeOfAll();
+                //messages.displayMessage("Screenshot taken of all displays!");
+                screenshotThead st = new screenshotThead();
             }
         });
 
@@ -97,6 +108,13 @@ public class createTrayIcon {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+
+        changeHotKeyAllDisplays.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeBind bindGUI = new changeBind("screenShotAllDisp");
             }
         });
 

@@ -27,11 +27,12 @@ public class takeScreenshot {
             //Save image.
             ImageIO.write(screenShot, "png", new File(fileName));
 
+            File f = new File(fileName);
+
             //Upload image.
-            dropzoneConnect.uploadFile(new File(fileName));
+            dropzoneConnect.uploadFile(f);
 
             //Delete file.
-            File f = new File(fileName);
             f.delete();
         } catch (Exception e) {
             messages.displayMessage("An error occurred while taking screenshot. (" + e.toString() + ").");
@@ -63,6 +64,7 @@ public class takeScreenshot {
 
             //Create image using robot and the screenbounds.
             BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
+
             //Create file name.
             String fileName = "tempFile" + UUID.randomUUID() + ".png";
 

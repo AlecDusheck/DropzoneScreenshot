@@ -1,8 +1,6 @@
 package com.simplyalec.dropzone.screenshot.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -11,8 +9,8 @@ import java.util.Properties;
  */
 public class config {
 
-    public static String username = null;
-    public static String password = null;
+    public static String username = "ds";
+    public static String password = "dsd";
 
     public static HashMap<Integer, String> keybinds = new HashMap<Integer, String>();
 
@@ -24,6 +22,12 @@ public class config {
         InputStream input = null;
 
         try {
+            //Make sure config exists, if it dosen't, make it.
+            File f = new File("config.properties");
+            if(!f.exists()){
+                file.createFile("config.properties");
+            }
+
             //Define inputsteam.
             input = new FileInputStream("config.properties");
 

@@ -1,9 +1,6 @@
 package com.simplyalec.dropzone.screenshot;
 
-import com.simplyalec.dropzone.screenshot.util.config;
-import com.simplyalec.dropzone.screenshot.util.createTrayIcon;
-import com.simplyalec.dropzone.screenshot.util.dropzoneConnect;
-import com.simplyalec.dropzone.screenshot.util.messages;
+import com.simplyalec.dropzone.screenshot.util.*;
 
 import java.awt.*;
 
@@ -21,16 +18,25 @@ public class DropzoneScreenshot {
             System.exit(0);
         }
 
-        config.load();
+        //Load config
+        //config.load();
 
+        //Make sure the username and password is filled out.
         if(config.username == null | config.password == null){
             messages.displayMessage("Please enter your Dropzone username and password in the settings, then restart Dropzone Screenshot.");
-            enabled = false;
+            //enabled = false;
         }
+
+        //Check to make sure the password and username works.
         if (!dropzoneConnect.checkCreds(config.password, config.password)) {
             messages.displayMessage("Username/Password combination incorrect. Change it in settings and restart.");
-            enabled = false;
+            //enabled = false;
         }
+
+        //Load keybinds
+        keybinds.load();
+
+        //Create trayicon.
         createTrayIcon.create();
     }
 }
